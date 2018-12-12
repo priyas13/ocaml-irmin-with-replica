@@ -13,3 +13,11 @@ remote_uri s is the remote or replica located at uri represented by string. URI 
 a string of characters that identifies a particular resource. All the uri should be different. There are various forms of URI. The most common form of URI is URL
 which stands for uniform resource locator, frequently referred as web address. [uri](https://en.wikipedia.org/wiki/Uniform_Resource_Identifier). In our work, we need to have multiple
 replicas where the uri for each replica will be different and unique. 
+```
+val push : db -> ?depth:int -> remote -> (unit, push_error) Result.result Lwt.t
+```
+push t ?depth r populates the remote store r or replica r with objects from the current store t, using the t's current branch.
+```
+val pull : db ‑> ?⁠depth:int ‑> remote ‑> [ `Merge of Info.f | `Set ] ‑> (unit, [ fetch_error | Merge.conflict ]) Result.result Lwt.t
+```
+pull t ?depth r s where s is the update strategy and it also updates t's current branch. It pulls the objects from the remote store r.
