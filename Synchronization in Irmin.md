@@ -21,3 +21,9 @@ push t ?depth r populates the remote store r or replica r with objects from the 
 val pull : db ‑> ?⁠depth:int ‑> remote ‑> [ `Merge of Info.f | `Set ] ‑> (unit, [ fetch_error | Merge.conflict ]) Result.result Lwt.t
 ```
 pull t ?depth r s where s is the update strategy and it also updates t's current branch. It pulls the objects from the remote store r.
+
+## Another helper function for synchronization
+```
+val remote_store : (module S with type t = 'a) -> 'a -> remote
+```
+Here remote is the type remote that we discussed above. remote_store t is the remote corresponding to the local store t. Here synchronization is done by importing and exporting store slices. This is slower than the remote-uri. 
