@@ -1,0 +1,1 @@
+ocamlfind ocamlopt remote1.ml sync_example.ml -o remote -package ezjsonm,irmin-unix,irmin-http,lwt.unix -linkpkg -thread
